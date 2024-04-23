@@ -28,9 +28,9 @@ deleteFromWhere = lambda table, condition, cursor : executeSQLComand(f"DELETE FR
 createDatabase("funcional_db", myDbCursor)
 useDatabase("funcional_db", myDbCursor)
 
-createTable("USERS", "id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), country VARCHAR(255), id_console INT", myDbCursor)
-createTable("VIDEOGAMES", "id_console INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), id_company INT, release_date DATE", myDbCursor)
-createTable("GAMES", "id_game INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), genre VARCHAR(255), release_date DATE, id_console INT", myDbCursor)
+createTable("USERS", "id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), country VARCHAR(255), FOREIGN KEY (id_console) REFERENCES VIDEOGAMES(id_console)", myDbCursor)
+createTable("VIDEOGAMES", "id_console INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), FOREIGN KEY (id_company) REFERENCES COMPANY(id_company), release_date DATE", myDbCursor)
+createTable("GAMES", "id_game INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), genre VARCHAR(255), release_date DATE, FOREIGN KEY (id_console) REFERENCES VIDEOGAMES(id_console)", myDbCursor)
 createTable("COMPANY", "id_company INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), country VARCHAR(255)", myDbCursor)
 
 insertInto("USERS", "name, country", "'Yan', 'Brazil'", myDbCursor)
