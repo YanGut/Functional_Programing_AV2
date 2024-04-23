@@ -1,7 +1,7 @@
 from q1_YanMendonca import *
 from flask import Flask, request, render_template
 
-app = Flask(__name__, template_folder='template_folder')
+app = Flask(__name__, template_folder='templates')
 
 user = lambda: {
     "name": "Medeiros",
