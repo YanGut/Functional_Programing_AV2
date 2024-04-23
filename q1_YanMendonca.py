@@ -1,23 +1,55 @@
+#As chamadas das funcoes estao la embaixo, descomente as que deseja testar
+
 # users
-userOne = lambda : {
+userCashOne = lambda : {
     "name": "Medeiros",
     "password": "654321",
-    "cpf": "987654321",
     "credit_limit": 2000,
     "money": 300,
     "transactions_status": "No transaction yet",
 }
 
-userTwo = lambda : {
+userCashTwo = lambda : {
     "name": "Lucas",
     "password": "859306",
-    "cpf": "111222333",
     "credit_limit": 3000,
     "money": 200,
     "transactions_status" : "No transaction yet",
 }
 
-usersArray = lambda : [userOne(), userTwo()]
+userFundOne = lambda : {
+    "name": "Rodrigo",
+    "password": "859306",
+    "credit_limit": 3000,
+    "money": 200,
+    "transactions_status" : "No transaction yet",
+}
+
+userFundTwo = lambda : {
+    "name": "Rodrigues",
+    "password": "859306",
+    "credit_limit": 3000,
+    "money": 200,
+    "transactions_status" : "No transaction yet",
+}
+
+userCreditOne = lambda : {
+    "name": "Matheus",
+    "password": "859306",
+    "credit_limit": 3000,
+    "money": 200,
+    "transactions_status" : "No transaction yet",
+}
+
+userCreditTwo = lambda : {
+    "name": "Lara",
+    "password": "859306",
+    "credit_limit": 3000,
+    "money": 200,
+    "transactions_status" : "No transaction yet",
+}
+
+usersArray = lambda : [userCashOne(), userCashTwo(), userFundOne(), userFundTwo(), userCreditOne(), userCreditTwo()]
 
 login = users = lambda name, password: [user for user in usersArray() if user["name"] == name and user["password"] == password][0]
 
@@ -63,6 +95,7 @@ def cashCurrign(name, password, amount):
     return_payment_receipt(user)
     complete_transaction(user)
     print(f"Cash completed for user -> \n{user}\n")
+    return user["transactions_status"]
 
 def fundTransfierCurring(nameToTransefer, password, amount, nameToReceive):
     user1 = login(nameToTransefer, password)
@@ -73,6 +106,11 @@ def fundTransfierCurring(nameToTransefer, password, amount, nameToReceive):
     fundTransfer(user1, user2, amount)
     print(f"User to transfer -> \n{user1}\n")
     print(f"User to receive -> \n{user2}\n")
+    complete_transaction(user1)
+    complete_transaction(user2)
+    print(f"User to transfer -> \n{user1}\n")
+    print(f"User to receive -> \n{user2}\n")
+    return user1["transactions_status"]
 
 def creditCurrign(name, password, amount):
     user = login(name, password)
@@ -82,11 +120,12 @@ def creditCurrign(name, password, amount):
     print(f"Credit executed for user -> \n{user}\n")
     complete_transaction(user)
     print(f"Credit completed for user -> \n{user}\n")
+    return user["transactions_status"]
 
-# COMENTE AS FUNÇÕES QUE NÃO SERÃO TESTADAS QUNADO FOR RODAR O PROGRAMA
+# COMENTE AS FUNÇÕES QUE NÃO SERÃO TESTADAS QUNADO FOR RODAR O PROGRAMA==================================================
 
 #Functions to test
 
 cashCurrign("Medeiros", "654321", 100)
-# fundTransfierCurring("Medeiros", "654321", 100, "Lucas")
-# creditCurrign("Medeiros", "654321", 100)
+# fundTransfierCurring("Rodrigo", "859306", 100, "Rodrigues")
+# creditCurrign("Lara", "859306", 100)
